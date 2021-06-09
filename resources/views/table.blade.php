@@ -33,7 +33,7 @@ tr:nth-child(even) {
 </head>
 <body>
 
-<h2>Product Table</h2>
+<h2>Products Table</h2>
 <form method="post" id="basicform" action="{{ route('store.form.delete') }}">
 				@csrf
 <div class="col-lg-6">
