@@ -34,7 +34,7 @@ tr:nth-child(even) {
 <body>
 
 <h2>Products Table</h2>
-<form method="post" id="basicform" action="{{ route('store.form.delete') }}">
+<form method="post" id="basicform" action="{{route('store.form.delete')}}">
 				@csrf
 <div class="col-lg-6">
 						<div class="d-flex">
@@ -56,8 +56,7 @@ tr:nth-child(even) {
           </div>
 </form>
 <div class="container">
-
-<div class="float-right pb-3">
+    <div class="float-right pb-3">
                         <form>
                             <div class="input-group mt-3 col-12">
                                 <input type="text" class="form-control" placeholder="Search By  ID" required=""
@@ -67,19 +66,15 @@ tr:nth-child(even) {
                                 </div>
                             </div>
                             <div class="float-right pb-3">
-                            <a href="{{route('store.form')}}" class="btn btn-lg btn-success">Add New Title</a>
+                              <a href="{{route('store.form')}}" class="btn btn-lg btn-success">Add New Title</a>
                             </div>
                             <div class="float-right pb-3">
-                            <a href="{{route('export')}}" class="btn btn-lg btn-success">Export Data</a>
+                              <a href="{{route('export')}}" class="btn btn-lg btn-success">Export Data</a>
                             </div>
-
-
-                            
-                   
                         </form>
-                    </div>
+    </div>
 
-                    </div>
+</div>
 
 
   
@@ -87,18 +82,18 @@ tr:nth-child(even) {
 <table class="table table-striped">
   <thead>
     <tr>
-    <th class="am-select">
+              <th class="am-select">
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" class="custom-control-input checkAll" id="checkAll">
 									<label class="custom-control-label" for="checkAll"></label>
 								</div>
 							</th>
-      <th scope="col">ID</th>
-      <th scope="col">Title</th>
-      <th scope="col">Slug</th>
-      <th scope="col">Details</th>
-      <th scope="col">Image</th>
-      <th scope="col">Actions</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Slug</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">Image</th>
+                  <th colspan="2">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -117,8 +112,8 @@ tr:nth-child(even) {
       <td>{{$d->slug}}</td>
       <td>{{$d->details}}</td>
       <td><img src="/images/{{$d->image}}" onerror="this.src='http://127.0.0.1:8000/images/download.jpg'" width="50px" height="50px"></td>
-      <td><a href={{route('store.form.edit',$d->id)}}>Edit</a>
-    <a href={{route('store.form.delete',$d->id)}} onclick="alert('Successfully Deleted!')">Delete</a></td>  
+      <td><a href="{{route('store.form.edit',$d->id)}}">Edit</a></td>
+      <td><a href="{{route('store.form.delete',$d->id)}}" onclick="alert('Successfully Deleted!')">Delete</a></td>  
       </tr>
 
 @endforeach

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
+use Illuminate\Support\Facades\Input;
 
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
@@ -13,37 +15,29 @@ class ProductController extends Controller
 {
     public function getForm()
     {
-        return view('form');
+        $categories = Category::all();
+        // dd($categories);
+        return view('admin.blog',compact('categories'));
+        // return view('admin.blog');
     }
     public function submitForm(Request $request)
     {
         $store = new Product();
+        $arrayTostring =implode(',', $request->category_id);
+        $store->category_id=$arrayTostring;
         $store->title = $request->title;
         $store->slug = $request->title;
-        $store->details = $request->details;  
+        $store->details = $request->details;
         if ($files=$request->file('image'))
         {
             $name=$files->getClientOriginalName();
             $files->move('images',$name);
             $store->image=$name;
         }
+    
         $store->save();
         return redirect()->route('store.table');
-        $validator = Validator::make($request->all(),
-        [
-            'title' => 'required|min:4|max:25',
-            'details' => 'required|min:4|max:25',
-        ],
-        [
-            'title.required' => 'The title field is required.',
-            'title.min' => 'The title must be at least 4 characters.',
-            'title.max' => 'The title may not be greater than 25 characters.',
-            'details.required' => 'The details field is required.',
-            'details.min' => 'The  details must be at least 4 characters.',
-            'details.max' => 'The details may not be greater than 25 characters.',
-        ])->validate();
-        dd('form submitted sucessfully');
-
+     
     }
     public function getTable(Request $request)
     {
@@ -63,13 +57,14 @@ class ProductController extends Controller
     public function editForm($id)
     {
         $data = Product::find($id);
-        return view('edit',compact('data'));
+        return view('admin.edit',compact('data'));
     }
     public function updateForm(Request $request,$id)
     {
         $store = Product::find($id);
         $store->title = $request->title;
         $store->details = $request->details;
+        $store->category_id = $request->category_id;
         $store->update();
         return redirect()->route('store.form');
     }
@@ -78,6 +73,7 @@ class ProductController extends Controller
         $store = Product::find($id);
         $store->title = $request->title;
         $store->details = $request->details;
+        $store->category_id = $request->category_id;
         $store->delete();
         return redirect()->route('store.form');
     }

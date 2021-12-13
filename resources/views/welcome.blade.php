@@ -1,99 +1,269 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app1')
+@section('content')
+     
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+        <!-- Top News Start-->
+        <div class="top-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 tn-left">
+                        <div class="row tn-slider">
+                            @foreach ($all as $all)
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                <img src="images/{{$all->image}}" width="450px" height="350px" />
+                                    <div class="tn-title">
+                                        <a href="{{url('blog')}}/{{$all->id}}" >{{$all->title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="col-md-6 tn-right">
+                        <div class="row">
+                            @foreach($entertainment as $enter)
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    <img src="images/{{$enter->image}}"  />
+                                    <div class="tn-title">
+                                        <a href="{{url('blog')}}/{{$enter->id}}">{{$enter->title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+        <!-- Top News End-->
+
+        <!-- Category News Start-->
+        <div class="cat-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Sports</h2>
+                        <div class="row cn-slider">
+                            @foreach($sport as $all)    
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="images/{{$all->image}}" width="225px" height="175px" />
+                                    <div class="cn-title">
+                                        <a href="{{url('blog')}}/{{$all->id}}">{{$all->title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Technology</h2>
+                        <div class="row cn-slider">
+                        @foreach($technology as $all)   
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="images/{{$all->image}}" width="225px" height="175px" />
+                                    <div class="cn-title">
+                                        <a href="{{url('blog')}}/{{$all->id}}">{{$all->title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+
+        <!-- Category News Start-->
+        <div class="cat-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Business</h2>
+                        <div class="row cn-slider">
+                        @foreach($business as $all) 
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="images/{{$all->image}}" width="225px" height="175px"/>
+                                    <div class="cn-title">
+                                        <a href="{{url('blog')}}/{{$all->id}}">{{$all->title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Entertainment</h2>
+                        <div class="row cn-slider">
+                        @foreach($entertainment as $all)
+                            <div class="col-md-6"> 
+                                <div class="cn-img">
+                                    <img src="images/{{$all->image}}" width="225px" height="175px" />
+                                    <div class="cn-title">
+                                        <a href="{{url('blog')}}/{{$all->id}}">{{$all->title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+        
+        <!-- Tab News Start-->
+        <div class="tab-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="nav nav-pills nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#featured">Featured News</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#popular">Popular News</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#latest">Latest News</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="featured" class="container tab-pane active">
+                                @foreach($sport as $sport)
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="images/{{$sport->image}}" />
+                                    </div>
+                                    <div class="tn-title">
+                                        <a href="{{url('blog')}}/{{$sport->id}}">{{$sport->title}}</a>
+                                    </div>
+                                </div>
+                                @endforeach 
+                            </div>
+                            <div id="popular" class="container tab-pane fade">
+                            @foreach($technology as $tech)
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="images/{{$tech->image}}" />
+                                    </div>
+                                    <div class="tn-title">
+                                        <a href="{{url('blog')}}/{{$tech->id}}">{{$tech->title}}</a>
+                                    </div>
+                                </div>
+                            @endforeach 
+                            </div>
+                            <div id="latest" class="container tab-pane fade">
+                            @foreach($entertainment as $enter)
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="images/{{$enter->image}}" />
+                                    </div>
+                                    <div class="tn-title">
+                                        <a href="{{url('blog')}}/{{$enter->id}}">{{$enter->title}}</a>
+                                    </div>
+                                </div>
+                            @endforeach 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <ul class="nav nav-pills nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#m-viewed">Most Viewed</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#m-read">Most Read</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#m-recent">Most Recent</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="m-viewed" class="container tab-pane active">
+                            @foreach($technology as $tech)
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="images/{{$tech->image}}" />
+                                    </div>
+                                    <div class="tn-title">
+                                        <a href="{{url('blog')}}/{{$tech->id}}">{{$tech->title}}</a>
+                                    </div>
+                                </div>
+                            @endforeach    
+                        </div>
+                            <div id="m-read" class="container tab-pane fade">
+                            @foreach($business as $business)
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="images/{{$business->image}}" />
+                                    </div>
+                                    <div class="tn-title">
+                                        <a href="{{url('blog')}}/{{$business->id}}">{{$business->title}}</a>
+                                    </div>
+                                </div>
+                            @endforeach  
+                            </div>
+                            <div id="m-recent" class="container tab-pane fade">
+                            @foreach($entertainment as $enter)
+                                <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="images/{{$enter->image}}" />
+                                    </div>
+                                    <div class="tn-title">
+                                        <a href="{{url('blog')}}/{{$enter->id}}">{{$enter->title}}</a>
+                                    </div>
+                                </div>
+                            @endforeach  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tab News Start-->
+
+        <!-- Main News Start-->
+        <div class="main-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="row">
+                        @foreach($technology as $tech)
+                            <div class="col-md-4">
+                                <div class="mn-img">
+                                    <img src="images/{{$tech->image}}" width="200px" height="200px"/>
+                                    <div class="mn-title">
+                                        <a href="{{url('blog')}}/{{$tech->id}}">{{$tech->title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach  
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3">
+                        <div class="mn-list">
+                            <h2>Read More</h2>
+                            <ul>
+                            @foreach($technology as $tech)
+                                <li><a href="{{url('blog')}}/{{$tech->id}}">{{$tech->title}}</a></li>
+                            @endforeach   
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main News End-->
+
+        @endsection

@@ -12,6 +12,8 @@
   <input type="text" id="title" name="title" ><br>
   <label for="details">Details:</label><br>
   <input type="text" id="details" name="details" ><br><br>
+  <label for="category_id">Category_id:</label><br>
+  <input type="number" id="category_id" name="category_id" ><br><br>
   <label for="image">Image:</label><br>
   <input type="file" id="input-b2" name="image" placeholder="Insert image" ><br><br>
 

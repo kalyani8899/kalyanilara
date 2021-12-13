@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddImageToProducts extends Migration
+class AddRoleIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddImageToProducts extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('image');
-        
+        Schema::table('users', function (Blueprint $table) {
+            //
         });
     }
 
@@ -26,7 +25,7 @@ class AddImageToProducts extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }
